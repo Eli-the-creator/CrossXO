@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode, useCallback } from 'react';
-import { View } from 'react-native';
+import { SafeAreaView, View, StyleSheet } from 'react-native';
 
 // Fonts
 import { useFonts } from 'expo-font';
@@ -22,8 +22,8 @@ interface AppBootstrapProps {
 
 function AppBootstrap({ children }: AppBootstrapProps): ReactElement | null {
     const [fontsLoaded] = useFonts({
-        Poppins_400Regular,
-        Poppins_700Bold,
+        Poppins400: require('../../../assets/fonts/Poppins/Poppins-Regular.ttf'),
+        Poppins700: require('../assets/fonts/Poppins/Poppins-Bold.ttf'),
     });
 
     const onLayoutRootView = useCallback(async () => {
@@ -38,14 +38,7 @@ function AppBootstrap({ children }: AppBootstrapProps): ReactElement | null {
     }
 
     return (
-        <View
-            style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-            onLayout={onLayoutRootView}
-        >
+        <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
             {children}
         </View>
     );
